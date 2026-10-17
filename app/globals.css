@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* ============================================================
+   PORTAL MACEDO — Design Tokens & Texturas
+   ============================================================ */
+
+:root {
+  /* Brand — Azul Real/Cobalto */
+  --blue-50:  #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --blue-300: #93C5FD;
+  --blue-400: #60A5FA;
+  --blue-500: #3B82F6;
+  --blue-600: #2563EB;
+  --blue-700: #1D4ED8;
+  --blue-800: #1E40AF;
+  --blue-900: #1E3A8A;
+
+  /* Suporte */
+  --slate-500: #64748B;
+  --emerald-500: #10B981;
+  --amber-500: #F59E0B;
+  --red-500: #EF4444;
+
+  /* Tema Claro */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  --border: #E2E8F0;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --grid-line: rgba(37, 99, 235, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0F172A;
+    --foreground: #E2E8F0;
+    --card: #1E293B;
+    --card-foreground: #F1F5F9;
+    --border: #334155;
+    --muted: #1E293B;
+    --muted-foreground: #94A3B8;
+    --primary: #3B82F6;
+    --primary-foreground: #FFFFFF;
+    --grid-line: rgba(255, 255, 255, 0.04);
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #0F172A;
+  --foreground: #E2E8F0;
+  --card: #1E293B;
+  --card-foreground: #F1F5F9;
+  --border: #334155;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --primary: #3B82F6;
+  --primary-foreground: #FFFFFF;
+  --grid-line: rgba(255, 255, 255, 0.04);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ============================================================
+   Textura de Papel Quadriculado (Milimetrado)
+   ============================================================ */
+.bg-grid-math {
+  background-size: 26px 26px;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
