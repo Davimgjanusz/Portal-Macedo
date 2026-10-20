@@ -11,6 +11,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'react-toastify';
+import Spinner from '@/components/ui/Spinner';
+import { maskTelefone } from '@/lib/masks';
 
 const newStudentSchema = z.object({
   email: z.string().email('E-mail inválido'),
@@ -23,6 +25,7 @@ export default function AlunosPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [credenciais, setCredenciais] = useState(null);
 
   const {
     register,
@@ -35,7 +38,7 @@ export default function AlunosPage() {
     const supabase = createClient();
     const { data } = await supabase
       .from('profiles')
-      .select('*')
+      .select('id, nome, email, telefone')
       .eq('role', 'student')
       .eq('ativo', true)
       .order('nome');
@@ -64,7 +67,8 @@ export default function AlunosPage() {
         const err = await res.json();
         throw new Error(err.error || 'Erro ao criar aluno');
       }
-      toast.success('Aluno cadastrado com sucesso!');
+      const dados = await res.json();
+      setCredenciais({ nome: data.nome, email: data.email, senha: dados.senhaProvisoria });
       reset();
       setModalOpen(false);
       loadStudents();
@@ -96,7 +100,7 @@ export default function AlunosPage() {
       </div>
 
       {loading ? (
-        <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>Carregando...</p>
+        <Spinner />
       ) : filtered.length === 0 ? (
         <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>
           {search ? 'Nenhum aluno encontrado.' : 'Nenhum aluno cadastrado.'}
@@ -129,11 +133,39 @@ export default function AlunosPage() {
         </div>
       )}
 
+      <Modal open={!!credenciais} onClose={() => setCredenciais(null)} title="Senha provisória do aluno" size="sm">
+        {credenciais && (
+          <div className="space-y-4">
+            <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
+              Entregue ao aluno <strong style={{ color: 'var(--foreground)' }}>{credenciais.nome}</strong> ({credenciais.email}) a senha abaixo.
+            </p>
+            <p
+              className="rounded-lg px-4 py-3 text-center font-mono text-lg tracking-wider select-all"
+              style={{ background: 'var(--muted)', color: 'var(--foreground)' }}
+            >
+              {credenciais.senha}
+            </p>
+            <Button
+              className="w-full"
+              onClick={async () => {
+                await navigator.clipboard.writeText(credenciais.senha);
+                toast.success('Senha copiada');
+              }}
+            >
+              Copiar senha
+            </Button>
+            <p className="text-xs" style={{ color: 'var(--muted-foreground)' }}>
+              Esta senha não será exibida novamente. No primeiro acesso, o aluno precisará criar a própria senha.
+            </p>
+          </div>
+        )}
+      </Modal>
+
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Cadastrar Novo Aluno">
         <form onSubmit={handleSubmit(onCreateStudent)} className="space-y-4">
           <Input label="Nome Completo" {...register('nome')} error={errors.nome?.message} />
           <Input label="E-mail" type="email" {...register('email')} error={errors.email?.message} />
-          <Input label="Telefone" {...register('telefone')} error={errors.telefone?.message} />
+          <Input label="Telefone" type="tel" inputMode="tel" placeholder="(11) 99999-9999" mask={maskTelefone} {...register('telefone')} error={errors.telefone?.message} />
           <div className="flex gap-3 pt-2">
             <Button type="button" variant="secondary" onClick={() => setModalOpen(false)} className="flex-1">
               Cancelar

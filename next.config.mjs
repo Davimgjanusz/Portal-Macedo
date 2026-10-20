@@ -3,6 +3,7 @@ const nextConfig = {
   output: 'standalone',
   cacheComponents: true,
   partialPrefetching: true,
+  serverExternalPackages: ['pdfkit'],
   turbopack: {
     rules: {
       "*.css": {

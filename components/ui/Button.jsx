@@ -4,13 +4,13 @@ import { forwardRef } from 'react';
 
 const variants = {
   primary:
-    'text-[var(--primary-foreground)] hover:opacity-90',
+    'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm hover:brightness-110 hover:shadow-md',
   secondary:
-    'border text-[var(--foreground)] hover:opacity-80',
+    'border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] shadow-sm hover:bg-[var(--muted)] hover:border-[var(--primary)]',
   ghost:
-    'hover:bg-[var(--muted)] text-[var(--foreground)]',
+    'text-[var(--foreground)] hover:bg-[var(--muted)]',
   danger:
-    'bg-red-600 text-white hover:bg-red-700',
+    'bg-red-600 text-white shadow-sm hover:bg-red-700 hover:shadow-md',
 };
 
 const sizes = {
@@ -26,14 +26,7 @@ const Button = forwardRef(function Button(
   return (
     <button
       ref={ref}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`}
-      style={
-        variant === 'primary'
-          ? { background: 'var(--primary)' }
-          : variant === 'secondary'
-            ? { borderColor: 'var(--border)', background: 'var(--card)' }
-            : undefined
-      }
+      className={`inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}

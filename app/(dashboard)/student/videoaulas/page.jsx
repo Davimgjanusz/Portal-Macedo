@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { Video, Play } from 'lucide-react';
 import Card from '@/components/ui/Card';
+import Spinner from '@/components/ui/Spinner';
 
 export default function StudentVideoaulasPage() {
   const [videos, setVideos] = useState([]);
@@ -40,7 +41,7 @@ export default function StudentVideoaulasPage() {
       </h1>
 
       {loading ? (
-        <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>Carregando...</p>
+        <Spinner />
       ) : videos.length === 0 ? (
         <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>
           Nenhuma videoaula disponível no momento.
