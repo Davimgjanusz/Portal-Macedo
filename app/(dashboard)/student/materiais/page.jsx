@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { FileText, Download, BookOpen } from 'lucide-react';
 import Card from '@/components/ui/Card';
+<<<<<<< HEAD
+=======
+import Spinner from '@/components/ui/Spinner';
+>>>>>>> master
 
 export default function StudentMateriaisPage() {
   const [materiais, setMateriais] = useState([]);
@@ -32,7 +36,11 @@ export default function StudentMateriaisPage() {
       </h1>
 
       {loading ? (
+<<<<<<< HEAD
         <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>Carregando...</p>
+=======
+        <Spinner />
+>>>>>>> master
       ) : materiais.length === 0 ? (
         <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>
           Nenhum material disponível no momento.

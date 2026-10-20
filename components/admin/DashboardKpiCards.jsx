@@ -11,14 +11,30 @@ import {
   AlertCircle,
 } from 'lucide-react';
 
+<<<<<<< HEAD
 function KpiCard({ icon: Icon, label, value, color = 'var(--primary)' }) {
+=======
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function KpiCard({ icon: Icon, label, value, color = 'var(--primary)' }) {
+  const bgColor = color.startsWith('#') ? hexToRgba(color, 0.12) : `color-mix(in srgb, ${color} 12%, transparent)`;
+>>>>>>> master
   return (
     <div
       className="rounded-xl border p-4 shadow-sm"
       style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
     >
       <div className="flex items-center gap-3">
+<<<<<<< HEAD
         <div className="rounded-lg p-2" style={{ background: `${color}15` }}>
+=======
+        <div className="rounded-lg p-2" style={{ background: bgColor }}>
+>>>>>>> master
           <Icon className="w-5 h-5" style={{ color }} />
         </div>
         <div>

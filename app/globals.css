@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
+<<<<<<< HEAD
    PORTAL MACEDO — Design Tokens & Texturas
    ============================================================ */
 
@@ -62,6 +63,114 @@
   --primary: #3B82F6;
   --primary-foreground: #FFFFFF;
   --grid-line: rgba(255, 255, 255, 0.04);
+=======
+   Home (público): claro com hero escuro em azul-marinho
+   ============================================================ */
+:root {
+  --background: #FFFFFF;
+  --foreground: #0B1220;
+  --card: #F8FAFC;
+  --card-foreground: #0B1220;
+  --border: #E2E8F0;
+  --muted: #F1F5F9;
+  --muted-foreground: #475569;
+  --primary: #1D4ED8;
+  --primary-foreground: #FFFFFF;
+  --accent: #F59E0B;
+  --accent-foreground: #0B1220;
+  --hero-from: #0B1B3F;
+  --hero-to: #1E3A8A;
+}
+
+:root[data-theme="dark"] {
+  --background: #060B18;
+  --foreground: #E2E8F0;
+  --card: #0E1729;
+  --card-foreground: #E2E8F0;
+  --border: #1E2A44;
+  --muted: #131E36;
+  --muted-foreground: #94A3B8;
+  --primary: #60A5FA;
+  --primary-foreground: #0B1220;
+  --accent: #FBBF24;
+  --accent-foreground: #0B1220;
+  --hero-from: #050A17;
+  --hero-to: #0F1F4A;
+}
+
+/* ============================================================
+   Painel do professor: ardósia com sidebar escura, denso e sóbrio
+   ============================================================ */
+.theme-teacher {
+  --background: #F1F5F9;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --border: #E2E8F0;
+  --muted: #EEF2F7;
+  --muted-foreground: #64748B;
+  --primary: #1E40AF;
+  --primary-foreground: #FFFFFF;
+  --sidebar: #0F172A;
+  --sidebar-fg: #94A3B8;
+  --sidebar-strong: #FFFFFF;
+  --sidebar-hover: #1E293B;
+  --sidebar-active: #1E40AF;
+}
+
+:root[data-theme="dark"] .theme-teacher {
+  --background: #0B1020;
+  --foreground: #E2E8F0;
+  --card: #131B2E;
+  --card-foreground: #E2E8F0;
+  --border: #243049;
+  --muted: #1A2440;
+  --muted-foreground: #94A3B8;
+  --primary: #3B82F6;
+  --primary-foreground: #FFFFFF;
+  --sidebar: #070B16;
+  --sidebar-fg: #94A3B8;
+  --sidebar-strong: #FFFFFF;
+  --sidebar-hover: #111A2E;
+  --sidebar-active: #1D4ED8;
+}
+
+/* ============================================================
+   Área do aluno: tons de verde-azulado, claro e objetivo
+   ============================================================ */
+.theme-student {
+  --background: #F4F9F8;
+  --foreground: #0F2A2A;
+  --card: #FFFFFF;
+  --card-foreground: #0F2A2A;
+  --border: #D7E8E5;
+  --muted: #E8F4F2;
+  --muted-foreground: #4B6B68;
+  --primary: #0F766E;
+  --primary-foreground: #FFFFFF;
+  --sidebar: #FFFFFF;
+  --sidebar-fg: #4B6B68;
+  --sidebar-strong: #0F2A2A;
+  --sidebar-hover: #E8F4F2;
+  --sidebar-active: #0F766E;
+}
+
+:root[data-theme="dark"] .theme-student {
+  --background: #071513;
+  --foreground: #D9EFEB;
+  --card: #0D2220;
+  --card-foreground: #D9EFEB;
+  --border: #1C3A37;
+  --muted: #122B28;
+  --muted-foreground: #8FB5AF;
+  --primary: #2DD4BF;
+  --primary-foreground: #04201D;
+  --sidebar: #0A1D1B;
+  --sidebar-fg: #8FB5AF;
+  --sidebar-strong: #D9EFEB;
+  --sidebar-hover: #122B28;
+  --sidebar-active: #0F766E;
+>>>>>>> master
 }
 
 @theme inline {
@@ -74,13 +183,21 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+<<<<<<< HEAD
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+=======
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-manrope);
+>>>>>>> master
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+<<<<<<< HEAD
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -92,4 +209,34 @@ body {
   background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+=======
+}
+
+button:not(:disabled),
+[role="button"],
+a[href],
+select,
+label[for],
+summary {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+>>>>>>> master
 }

@@ -12,6 +12,10 @@ import Input from '@/components/ui/Input';
 import Select from '@/components/ui/Select';
 import Modal from '@/components/ui/Modal';
 import Card from '@/components/ui/Card';
+<<<<<<< HEAD
+=======
+import Spinner from '@/components/ui/Spinner';
+>>>>>>> master
 
 const schema = z.object({
   titulo: z.string().min(2, 'Título é obrigatório'),
@@ -111,7 +115,11 @@ export default function MateriaisPage() {
 
   return (
     <div className="space-y-6">
+<<<<<<< HEAD
       <div className="flex items-center justify-between">
+=======
+      <div className="flex flex-wrap items-center justify-between gap-3">
+>>>>>>> master
         <h1 className="text-2xl font-bold">Materiais Didáticos</h1>
         <Button onClick={() => setModalOpen(true)}>
           <Plus className="w-4 h-4" /> Novo Material
@@ -119,7 +127,11 @@ export default function MateriaisPage() {
       </div>
 
       {loading ? (
+<<<<<<< HEAD
         <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>Carregando...</p>
+=======
+        <Spinner />
+>>>>>>> master
       ) : materiais.length === 0 ? (
         <p className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>Nenhum material cadastrado.</p>
       ) : (
