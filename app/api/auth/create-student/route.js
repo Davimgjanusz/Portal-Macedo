@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient, createClient } from '@/lib/supabase/server';
-<<<<<<< HEAD
-=======
 import { gerarSenhaProvisoria } from '@/lib/senha-provisoria';
->>>>>>> master
 
 export async function POST(request) {
   try {
@@ -34,26 +31,6 @@ export async function POST(request) {
     }
 
     const serviceClient = await createServiceClient();
-<<<<<<< HEAD
-
-    const { data: newUser, error: authError } = await serviceClient.auth.admin.createUser({
-      email,
-      password: Math.random().toString(36).slice(-10) + 'A1!',
-      email_confirm: true,
-      user_metadata: { nome, role: 'student' },
-    });
-
-    if (authError) throw authError;
-
-    if (telefone && newUser?.user?.id) {
-      await serviceClient
-        .from('profiles')
-        .update({ telefone })
-        .eq('id', newUser.user.id);
-    }
-
-    return NextResponse.json({ id: newUser.user.id, message: 'Aluno criado com sucesso' });
-=======
     const senhaProvisoria = gerarSenhaProvisoria();
 
     const { data: existente } = await serviceClient
@@ -99,7 +76,6 @@ export async function POST(request) {
     }
 
     return NextResponse.json({ id: novo.user.id, senhaProvisoria, reativado: false });
->>>>>>> master
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

@@ -1,14 +1,5 @@
 'use client';
 
-<<<<<<< HEAD
-import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
-import DashboardKpiCards from '@/components/admin/DashboardKpiCards';
-import QuickExportButtons from '@/components/admin/QuickExportButtons';
-
-export default function AdminDashboard() {
-  const [analytics, setAnalytics] = useState(null);
-=======
 import { useEffect, useMemo, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from 'react-toastify';
@@ -50,29 +41,11 @@ export default function AdminDashboard() {
   const { user } = useDashboard();
   const [analytics, setAnalytics] = useState(null);
   const [rows, setRows] = useState([]);
->>>>>>> master
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
       const supabase = createClient();
-<<<<<<< HEAD
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (!user) return;
-
-      const { data, error } = await supabase.rpc('get_teacher_dashboard_analytics', {
-        p_teacher_id: user.id,
-      });
-
-      if (!error) setAnalytics(data);
-      setLoading(false);
-    }
-    load();
-  }, []);
-=======
       const inicio = inicioPeriodo();
       const inicioISO = `${inicio.getFullYear()}-${String(inicio.getMonth() + 1).padStart(2, '0')}-01`;
 
@@ -112,34 +85,21 @@ export default function AdminDashboard() {
     }),
     [rows]
   );
->>>>>>> master
 
   return (
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-<<<<<<< HEAD
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-=======
         <h1 className="font-display text-2xl font-bold">Dashboard</h1>
->>>>>>> master
         <QuickExportButtons />
       </div>
 
       {loading ? (
-<<<<<<< HEAD
-        <div className="text-center py-12" style={{ color: 'var(--muted-foreground)' }}>
-          Carregando métricas...
-        </div>
-      ) : (
-        <DashboardKpiCards data={analytics} />
-=======
         <Spinner label="Carregando indicadores" />
       ) : (
         <>
           <DashboardKpiCards data={analytics} />
           <DashboardCharts monthly={monthly} modalidade={modalidade} status={status} />
         </>
->>>>>>> master
       )}
     </div>
   );

@@ -1,11 +1,5 @@
 'use client';
 
-<<<<<<< HEAD
-import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
-=======
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -13,7 +7,6 @@ import { createClient } from '@/lib/supabase/client';
 import { DashboardContext } from '@/components/admin/useDashboard';
 import ConfirmModal from '@/components/ui/ConfirmModal';
 import Spinner from '@/components/ui/Spinner';
->>>>>>> master
 import {
   LayoutDashboard,
   Users,
@@ -39,16 +32,11 @@ const teacherLinks = [
 
 const studentLinks = [
   { href: '/student', label: 'Início', icon: Home },
-<<<<<<< HEAD
-=======
   { href: '/student/agenda', label: 'Agenda', icon: CalendarDays },
->>>>>>> master
   { href: '/student/materiais', label: 'Materiais', icon: FileText },
   { href: '/student/videoaulas', label: 'Videoaulas', icon: Video },
 ];
 
-<<<<<<< HEAD
-=======
 function NavItem({ link, active, onClick }) {
   return (
     <Link
@@ -65,7 +53,6 @@ function NavItem({ link, active, onClick }) {
   );
 }
 
->>>>>>> master
 export default function DashboardShell({ children }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -73,8 +60,6 @@ export default function DashboardShell({ children }) {
   const [profile, setProfile] = useState(null);
   const [dark, setDark] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-<<<<<<< HEAD
-=======
   const [confirmLogout, setConfirmLogout] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
@@ -82,7 +67,6 @@ export default function DashboardShell({ children }) {
     const current = document.documentElement.getAttribute('data-theme');
     if (current === 'dark') setDark(true);
   }, []);
->>>>>>> master
 
   useEffect(() => {
     const supabase = createClient();
@@ -91,22 +75,6 @@ export default function DashboardShell({ children }) {
         router.push('/login');
         return;
       }
-<<<<<<< HEAD
-      setUser(user);
-      supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single()
-        .then(({ data }) => setProfile(data));
-    });
-  }, [router]);
-
-  function toggleTheme() {
-    setDark((prev) => {
-      const next = !prev;
-      document.documentElement.setAttribute('data-theme', next ? 'dark' : 'light');
-=======
       if (user.user_metadata?.senha_provisoria) {
         router.replace('/alterar-senha');
         return;
@@ -132,78 +100,20 @@ export default function DashboardShell({ children }) {
       const val = next ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', val);
       try { localStorage.setItem('theme', val); } catch {}
->>>>>>> master
       return next;
     });
   }
 
   async function handleLogout() {
-<<<<<<< HEAD
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push('/login');
-=======
     setLoggingOut(true);
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push('/login');
     router.refresh();
->>>>>>> master
   }
 
   const isTeacher = profile?.role === 'teacher';
   const links = isTeacher ? teacherLinks : studentLinks;
-<<<<<<< HEAD
-
-  if (!user) return null;
-
-  return (
-    <div className="flex min-h-screen" style={{ background: 'var(--background)' }}>
-      {/* Sidebar Desktop */}
-      <aside
-        className="hidden lg:flex flex-col w-64 border-r fixed h-screen"
-        style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
-      >
-        <div className="px-5 py-5 border-b flex items-center gap-2" style={{ borderColor: 'var(--border)' }}>
-          <GraduationCap className="w-6 h-6" style={{ color: 'var(--primary)' }} />
-          <span className="font-bold" style={{ color: 'var(--primary)' }}>Portal Macedo</span>
-        </div>
-
-        <nav className="flex-1 px-3 py-4 space-y-1">
-          {links.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors"
-                style={{
-                  background: active ? 'var(--primary)' : 'transparent',
-                  color: active ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
-                }}
-              >
-                <link.icon className="w-4 h-4" />
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="p-3 border-t space-y-1" style={{ borderColor: 'var(--border)' }}>
-          <button
-            onClick={toggleTheme}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full transition-colors hover:bg-[var(--muted)]"
-            style={{ color: 'var(--muted-foreground)' }}
-          >
-            {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            {dark ? 'Modo Claro' : 'Modo Escuro'}
-          </button>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full text-red-500 transition-colors hover:bg-red-50"
-          >
-            <LogOut className="w-4 h-4" />
-=======
   const themeClass = profile ? (isTeacher ? 'theme-teacher' : 'theme-student') : '';
 
   return (
@@ -238,25 +148,11 @@ export default function DashboardShell({ children }) {
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full text-red-400 transition-colors hover:bg-red-500/10"
           >
             <LogOut className="w-4 h-4" aria-hidden="true" />
->>>>>>> master
             Sair
           </button>
         </div>
       </aside>
 
-<<<<<<< HEAD
-      {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 border-b h-14 flex items-center px-4 justify-between"
-        style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
-      >
-        <span className="font-bold text-sm" style={{ color: 'var(--primary)' }}>Portal Macedo</span>
-        <button onClick={() => setSidebarOpen(!sidebarOpen)}>
-          {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-      </div>
-
-      {/* Mobile Sidebar Overlay */}
-=======
       <div
         className="lg:hidden fixed top-0 left-0 right-0 z-50 h-14 flex items-center px-4 justify-between"
         style={{ background: 'var(--sidebar)', borderBottom: '1px solid var(--sidebar-hover)' }}
@@ -273,49 +169,10 @@ export default function DashboardShell({ children }) {
         </button>
       </div>
 
->>>>>>> master
       {sidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-40" onClick={() => setSidebarOpen(false)}>
           <div className="absolute inset-0 bg-black/50" />
           <aside
-<<<<<<< HEAD
-            className="absolute left-0 top-14 bottom-0 w-64 border-r p-3 space-y-1"
-            style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {links.map((link) => {
-              const active = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setSidebarOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors"
-                  style={{
-                    background: active ? 'var(--primary)' : 'transparent',
-                    color: active ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
-                  }}
-                >
-                  <link.icon className="w-4 h-4" />
-                  {link.label}
-                </Link>
-              );
-            })}
-            <hr style={{ borderColor: 'var(--border)' }} />
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full"
-              style={{ color: 'var(--muted-foreground)' }}
-            >
-              {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              {dark ? 'Modo Claro' : 'Modo Escuro'}
-            </button>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full text-red-500"
-            >
-              <LogOut className="w-4 h-4" />
-=======
             aria-label="Navegação principal"
             className="absolute left-0 top-14 bottom-0 w-64 p-3 space-y-1"
             style={{ background: 'var(--sidebar)', borderRight: '1px solid var(--sidebar-hover)' }}
@@ -343,26 +200,12 @@ export default function DashboardShell({ children }) {
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full text-red-400 transition-colors hover:bg-red-500/10"
             >
               <LogOut className="w-4 h-4" aria-hidden="true" />
->>>>>>> master
               Sair
             </button>
           </aside>
         </div>
       )}
 
-<<<<<<< HEAD
-      {/* Main Content */}
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0">
-        <div className="p-4 sm:p-6 lg:p-8 bg-grid-math min-h-screen">
-          {profile && (
-            <div className="mb-6">
-              <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
-                Olá, <span className="font-semibold" style={{ color: 'var(--foreground)' }}>{profile.nome}</span>
-              </p>
-            </div>
-          )}
-          {children}
-=======
       <ConfirmModal
         open={confirmLogout}
         onClose={() => setConfirmLogout(false)}
@@ -388,7 +231,6 @@ export default function DashboardShell({ children }) {
           ) : (
             <Spinner />
           )}
->>>>>>> master
         </div>
       </main>
     </div>

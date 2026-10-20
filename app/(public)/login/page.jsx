@@ -1,11 +1,7 @@
 'use client';
 
-<<<<<<< HEAD
-import { useState } from 'react';
-=======
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
->>>>>>> master
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,10 +11,7 @@ import { createClient } from '@/lib/supabase/client';
 import { GraduationCap, LogIn } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
-<<<<<<< HEAD
-=======
 import PasswordInput from '@/components/ui/PasswordInput';
->>>>>>> master
 
 const schema = z.object({
   email: z.string().email('E-mail inválido'),
@@ -35,8 +28,6 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     const erro = new URLSearchParams(window.location.search).get('erro');
     if (erro === 'google') toast.error('Não foi possível entrar com o Google. Tente novamente.');
@@ -54,40 +45,17 @@ export default function LoginPage() {
     if (error) toast.error(error.message);
   }
 
->>>>>>> master
   async function onSubmit(data) {
     setLoading(true);
     try {
       const supabase = createClient();
-<<<<<<< HEAD
-      const { error } = await supabase.auth.signInWithPassword({
-=======
       const { data: auth, error } = await supabase.auth.signInWithPassword({
->>>>>>> master
         email: data.email,
         password: data.password,
       });
 
       if (error) throw error;
 
-<<<<<<< HEAD
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single();
-
-      toast.success('Login realizado com sucesso!');
-      router.push(profile?.role === 'teacher' ? '/admin' : '/student');
-      router.refresh();
-    } catch (err) {
-      toast.error(err.message || 'Erro ao fazer login');
-    } finally {
-=======
       const { data: profile } = await supabase
         .from('profiles')
         .select('role')
@@ -100,27 +68,11 @@ export default function LoginPage() {
       const mensagem =
         err.message === 'Invalid login credentials' ? 'E-mail ou senha incorretos.' : err.message;
       toast.error(mensagem || 'Erro ao fazer login');
->>>>>>> master
       setLoading(false);
     }
   }
 
   return (
-<<<<<<< HEAD
-    <main className="min-h-screen bg-grid-math flex items-center justify-center px-4">
-      <div
-        className="w-full max-w-sm rounded-2xl border p-8 shadow-sm"
-        style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
-      >
-        <div className="text-center mb-6">
-          <div
-            className="inline-flex rounded-xl p-3 mb-3"
-            style={{ background: 'var(--primary)', color: 'var(--primary-foreground)' }}
-          >
-            <GraduationCap className="w-8 h-8" />
-          </div>
-          <h1 className="text-xl font-bold">Portal Macedo</h1>
-=======
     <main
       id="conteudo"
       className="min-h-screen flex items-center justify-center px-4 py-12"
@@ -132,42 +84,20 @@ export default function LoginPage() {
             <GraduationCap className="w-8 h-8" aria-hidden="true" />
           </div>
           <h1 className="font-display text-xl font-bold">Portal Macedo</h1>
->>>>>>> master
           <p className="text-sm mt-1" style={{ color: 'var(--muted-foreground)' }}>
             Acesse sua conta
           </p>
         </div>
 
-<<<<<<< HEAD
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input
-            label="E-mail"
-            type="email"
-=======
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <Input
             label="E-mail"
             type="email"
             autoComplete="email"
->>>>>>> master
             placeholder="seu@email.com"
             {...register('email')}
             error={errors.email?.message}
           />
-<<<<<<< HEAD
-          <Input
-            label="Senha"
-            type="password"
-            placeholder="••••••"
-            {...register('password')}
-            error={errors.password?.message}
-          />
-          <Button type="submit" disabled={loading} className="w-full">
-            <LogIn className="w-4 h-4" />
-            {loading ? 'Entrando...' : 'Entrar'}
-          </Button>
-        </form>
-=======
           <PasswordInput
             label="Senha"
             autoComplete="current-password"
@@ -201,7 +131,6 @@ export default function LoginPage() {
           </svg>
           Entrar com Google
         </Button>
->>>>>>> master
       </div>
     </main>
   );

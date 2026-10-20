@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Geist, Geist_Mono } from 'next/font/google';
-=======
 import { Geist, Geist_Mono, Manrope } from 'next/font/google';
->>>>>>> master
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
@@ -17,14 +13,11 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-<<<<<<< HEAD
-=======
 const manrope = Manrope({
   variable: '--font-manrope',
   subsets: ['latin'],
 });
 
->>>>>>> master
 export const metadata = {
   title: 'Portal Macedo — Aulas Particulares de Matemática',
   description:
@@ -32,14 +25,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-<<<<<<< HEAD
-  return (
-    <html
-      lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-=======
   const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`;
 
   return (
@@ -59,7 +44,6 @@ export default function RootLayout({ children }) {
         >
           Pular para o conteúdo
         </a>
->>>>>>> master
         {children}
         <ToastContainer
           position="top-right"

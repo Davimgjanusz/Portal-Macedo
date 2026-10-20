@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-'use client';
-
-=======
->>>>>>> master
 import { Star } from 'lucide-react';
 
 const depoimentos = [

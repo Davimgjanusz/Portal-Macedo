@@ -42,19 +42,11 @@ export default function PriceCalculator() {
             <button
               type="button"
               onClick={() => setModalidade('online')}
-<<<<<<< HEAD
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all"
-              style={{
-                background: modalidade === 'online' ? 'var(--primary)' : 'transparent',
-                color: modalidade === 'online' ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
-              }}
-=======
               className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
                 modalidade === 'online'
                   ? 'bg-[var(--primary)] text-[var(--primary-foreground)]'
                   : 'text-[var(--muted-foreground)] hover:bg-[var(--card)]'
               }`}
->>>>>>> master
             >
               <Monitor className="w-4 h-4" />
               Por Chamada (Online)
@@ -62,19 +54,11 @@ export default function PriceCalculator() {
             <button
               type="button"
               onClick={() => setModalidade('presencial')}
-<<<<<<< HEAD
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all"
-              style={{
-                background: modalidade === 'presencial' ? 'var(--primary)' : 'transparent',
-                color: modalidade === 'presencial' ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
-              }}
-=======
               className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
                 modalidade === 'presencial'
                   ? 'bg-[var(--primary)] text-[var(--primary-foreground)]'
                   : 'text-[var(--muted-foreground)] hover:bg-[var(--card)]'
               }`}
->>>>>>> master
             >
               <MapPin className="w-4 h-4" />
               Presencial
@@ -100,19 +84,11 @@ export default function PriceCalculator() {
           />
           <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--muted-foreground)' }}>
             <span>0.5h</span>
-<<<<<<< HEAD
-            <span>1h</span>
-            <span>1.5h</span>
-            <span>2h</span>
-            <span>2.5h</span>
-            <span>3h</span>
-=======
             <span className="hidden sm:inline">1h</span>
             <span>1.5h</span>
             <span className="hidden sm:inline">2h</span>
             <span>2.5h</span>
             <span className="hidden sm:inline">3h</span>
->>>>>>> master
             <span>3.5h</span>
             <span>4h</span>
           </div>
