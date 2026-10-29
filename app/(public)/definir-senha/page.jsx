@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -30,7 +29,6 @@ const schema = z
   });
 
 export default function DefinirSenhaPage() {
-  const router = useRouter();
   const [estado, setEstado] = useState('verificando');
   const [conta, setConta] = useState(null);
   const iniciado = useRef(false);
@@ -105,8 +103,7 @@ export default function DefinirSenhaPage() {
       return;
     }
     toast.success('Senha definida com sucesso!');
-    router.push(conta?.role === 'teacher' ? '/admin' : '/student');
-    router.refresh();
+    window.location.assign(conta?.role === 'teacher' ? '/admin' : '/student');
   }
 
   return (

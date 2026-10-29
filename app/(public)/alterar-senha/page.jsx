@@ -63,8 +63,7 @@ export default function AlterarSenhaPage() {
       return;
     }
     toast.success('Senha criada com sucesso!');
-    router.push(conta?.role === 'teacher' ? '/admin' : '/student');
-    router.refresh();
+    window.location.assign(conta?.role === 'teacher' ? '/admin' : '/student');
   }
 
   if (!conta) {

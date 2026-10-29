@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -19,7 +18,6 @@ const schema = z.object({
 });
 
 export default function LoginPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const {
@@ -62,8 +60,8 @@ export default function LoginPage() {
         .eq('id', auth.user.id)
         .single();
 
-      router.push(profile?.role === 'teacher' ? '/admin' : '/student');
-      router.refresh();
+      // Navegação completa: o cache do roteador pode guardar o redirecionamento de quando não havia sessão
+      window.location.assign(profile?.role === 'teacher' ? '/admin' : '/student');
     } catch (err) {
       const mensagem =
         err.message === 'Invalid login credentials' ? 'E-mail ou senha incorretos.' : err.message;

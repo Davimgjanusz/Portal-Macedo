@@ -110,8 +110,8 @@ export default function DashboardShell({ children }) {
     setLoggingOut(true);
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push('/login');
-    router.refresh();
+    // Navegação completa descarta o cache do roteador com páginas da sessão anterior
+    window.location.replace('/login');
   }
 
   const isTeacher = profile?.role === 'teacher';
