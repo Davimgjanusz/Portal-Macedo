@@ -70,7 +70,9 @@ export default function DashboardShell({ children }) {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    // O middleware já validou a sessão; ler do armazenamento local evita uma ida ao servidor
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const user = session?.user;
       if (!user) {
         router.push('/login');
         return;

@@ -64,6 +64,9 @@ export default function PublicLayout({ children }) {
           <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
             &copy; 2026 Portal Macedo — Aulas Particulares de Matemática
           </p>
+          <p className="text-xs mt-2" style={{ color: 'var(--muted-foreground)' }}>
+            Desenvolvido por Davi Janusz
+          </p>
         </div>
       </footer>
 
